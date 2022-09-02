@@ -1,0 +1,40 @@
+@echo off
+
+set "CURRENT_DIR=%cd%"
+cd ..
+set "MOVIEDATA_HOME=%cd%"
+
+if "%MOVIEDATA_JAVA_HOME%" NEQ "" goto enviromentOk
+    set MOVIEDATA_JAVA_HOME="%MOVIEDATA_HOME%\java"
+	goto enviromentOk
+
+:enviromentOk
+
+echo Using CURRENT_DIR      "%CURRENT_DIR%"
+echo Using MOVIEDATA_JAVA_HOME: "%MOVIEDATA_JAVA_HOME%"
+echo Using MOVIEDATA_HOME: "%MOVIEDATA_HOME%"
+
+set JAR_APP="%MOVIEDATA_HOME%\lib\moviesdata-0.0.1-SNAPSHOT.jar"
+set EXTER_CONFIG=--spring.config.additional-location=file:"%MOVIEDATA_HOME%\application.yml"
+set LOG_CONFIG=--logging.config="%MOVIEDATA_HOME%\logback.xml"
+
+set MOVIEDATA_MIN_MEMORY=512
+set MOVIEDATA_MAX_MEMORY=512
+set MOVIEDATA_MEMORY_PARAMS=-Xms%MOVIEDATA_MIN_MEMORY%M -Xmx%MOVIEDATA_MAX_MEMORY%M
+
+set OPTIONS=-Djava.net.preferIPv4Stack=true
+
+
+
+echo ---------------------------------
+echo Running Movie Data...
+"%MOVIEDATA_JAVA_HOME%\bin\java" -jar %JAR_APP% %MOVIEDATA_MEMORY_PARAMS% %OPTIONS% %LOG_CONFIG% %EXTER_CONFIG%
+goto Fim
+
+:enviromentNok
+echo Problemas na consifuração do aplicativo, contate desenvolvedor (47)98439-0048
+echo Analise e Desenvolveimento de Sistemas em Java
+echo Giorgy Oliveira
+pause
+
+:Fim

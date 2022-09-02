@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true"  scanPeriod="10 seconds">
+
+	<property name="base-path" value="/logs"/>
+	
+	<appender name="STDOUT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${base-path}/moviedata.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		  <fileNamePattern>${base-path}/%d{yyyy-MM-dd_HH}/moviedata.%i.log.zip</fileNamePattern>
+		  <maxHistory>72</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+		   <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STDOUT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{dd/MMM/yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+		</encoder>
+	</appender>	
+
+	<logger name="org.hibernate" level="ERROR" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT_CONSOLE" />
+		<appender-ref ref="STDOUT_FILE" />
+	</root>		
+	
+</configuration>

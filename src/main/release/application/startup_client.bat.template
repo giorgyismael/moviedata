@@ -5,7 +5,7 @@ cd ..
 set "MOVIEDATA_HOME=%cd%"
 
 if "%MOVIEDATA_JAVA_HOME%" NEQ "" goto enviromentOk
-    set MOVIEDATA_JAVA_HOME="%MOVIEDATA_HOME%\java"
+    set MOVIEDATA_JAVA_HOME="%JAVA_HOME%\java"
 	goto enviromentOk
 
 :enviromentOk
@@ -28,7 +28,7 @@ set OPTIONS=-Djava.net.preferIPv4Stack=true
 
 echo ---------------------------------
 echo Running Movie Data...
-"%MOVIEDATA_JAVA_HOME%\bin\java" -jar %JAR_APP% %MOVIEDATA_MEMORY_PARAMS% %OPTIONS% %LOG_CONFIG% %EXTER_CONFIG%
+java -jar %JAR_APP% %MOVIEDATA_MEMORY_PARAMS% %OPTIONS% %LOG_CONFIG% %EXTER_CONFIG%
 goto Fim
 
 :enviromentNok

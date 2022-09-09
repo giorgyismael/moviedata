@@ -29,15 +29,11 @@
 			<outputDirectory>MovieData/</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>src/main/release/java/</directory>
-			<outputDirectory>MovieData/java/</outputDirectory>
-		</fileSet>
-		<fileSet>
-			<directory>.</directory>
+			<directory>src/main/release/application/csv/</directory>
+			<includes>
+				<include>*.csv</include>
+			</includes>
 			<outputDirectory>MovieData/csv/</outputDirectory>
-			<excludes>
-				<exclude>*/**</exclude>
-			</excludes>
 		</fileSet>
 		<fileSet>
 			<directory>.</directory>

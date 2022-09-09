@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true"  scanPeriod="10 seconds">
 
-	<property name="base-path" value="/logs"/>
+	<property name="base-path" value="logs"/>
 	
 	<appender name="STDOUT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${base-path}/moviedata.log</file>

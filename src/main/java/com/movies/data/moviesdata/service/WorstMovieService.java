@@ -16,16 +16,6 @@ public class WorstMovieService {
     @Autowired
     WorstMovieRepository movieRepository;
 
-//    public void save(MultipartFile file) {
-//        try {
-//            List<WinnerMovieBO> movies = CSVHandler.readeCSVFile(file.getInputStream());
-//            movieRepository.saveAll(movies);
-//        } catch (IOException e) {
-//            log.error("fail to store csv data: " + e.getMessage());
-//            throw new RuntimeException("fail to store csv data: " + e.getMessage());
-//        }
-//    }
-
     public WorstMovieBO csvToWortsMovie(CSVRecord record) {
         return buildWortsMovie(record);
     }

@@ -1,7 +1,9 @@
 server:
   port: 8080
 import-data-csv:
-  path: "D:\\dev_pessoal\\source\\moviesdata\\src\\main\\resources\\csv\\movielist.csv"
+  enable: true
+  environment-type: PROD
+  file-name: movielist.csv
 spring:
   application:
     name: movies-data

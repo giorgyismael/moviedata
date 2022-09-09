@@ -1,9 +1,6 @@
 package com.movies.data.moviesdata.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,8 +8,10 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Builder
-@Entity(name="STUDIOS")
+@Entity
+@Table(name="STUDIOS")
 public class StudiosBO {
     @Id
     @GeneratedValue(generator = "STUDIOS_GEN")
@@ -22,6 +21,7 @@ public class StudiosBO {
     @Column(name="name", nullable = false,length = 128)
     private String name;
 
+    @Transient
     @OneToMany(mappedBy = "studios")
     private List<WorstMovieStudiosBO> worstMovieStudios;
 }

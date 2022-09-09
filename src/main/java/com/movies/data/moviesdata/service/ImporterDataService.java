@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Slf4j
@@ -30,19 +31,30 @@ public class ImporterDataService {
     @Autowired 
     WorstMovieStudiosRepository worstMovieStudiosRepository;
 
+
     public void processFile(MultipartFile file) {
         try {
-            List<CSVRecord> records = CSVHandler.readeCSVFile(file.getInputStream());
+            processFile(file.getInputStream());
+        } catch (IOException e) {
+            log.error("fail to store csv data: " + e.getMessage());
+            throw new RuntimeException("fail to store csv data: " + e.getMessage());
+        }
+    }
+
+    public void processFile(InputStream file){
+        try {
+            List<CSVRecord> records = CSVHandler.readeCSVFile(file);
             records.forEach(record ->{
                     List<ProducersBO> producers = producersService.csvToProducers(record);
                     List<StudiosBO> studios = studiosService.csvToStudios(record);
                     WorstMovieBO worstMovie = winnerMovieService.csvToWortsMovie(record);
                     saveRecords(producers, studios, worstMovie);
                 });
-        } catch (IOException e) {
-            log.error("fail to store csv data: " + e.getMessage());
-            throw new RuntimeException("fail to store csv data: " + e.getMessage());
-        }
+
+        } catch (RuntimeException e) {
+                log.error("fail to store csv data: " + e.getMessage());
+                throw new RuntimeException("fail to store csv data: " + e.getMessage());
+            }
     }
     @Transactional
     private void saveRecords(List<ProducersBO> producers,  List<StudiosBO> studios, WorstMovieBO worstMovie){

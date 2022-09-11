@@ -1,5 +1,7 @@
 server:
   port: 8080
+  base: /api
+  host: http://localhost
 import-data-csv:
   enable: true
   environment-type: PROD

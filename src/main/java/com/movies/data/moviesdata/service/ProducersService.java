@@ -1,12 +1,10 @@
 package com.movies.data.moviesdata.service;
 
 import com.movies.data.moviesdata.cache.CacheStore;
-import com.movies.data.moviesdata.cache.CacheStoreProducers;
 import com.movies.data.moviesdata.model.ProducersBO;
 import com.movies.data.moviesdata.repository.ProducersRepository;
-import io.micrometer.core.instrument.util.StringUtils;
-import lombok.var;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

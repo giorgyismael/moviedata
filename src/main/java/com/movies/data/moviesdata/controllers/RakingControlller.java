@@ -19,7 +19,7 @@ import java.util.List;
 public class RakingControlller {
 
     @Autowired
-    RakingService RakingService;
+    RakingService rakingService;
 
     @GetMapping("/worstmovies")
     public ResponseEntity<?> worstMovies() {
@@ -27,8 +27,8 @@ public class RakingControlller {
         log.info("Loading rancking of the worstmovies ");
         try {
             log.info("Generating...");
-            List<RankingDTO> ranking =  RakingService.mountWortsMovies();
-            ResultRankingDTO resulRanking = RakingService.filterByMaxAndMinResults(ranking);
+            List<RankingDTO> ranking =  rakingService.mountWortsMovies();
+            ResultRankingDTO resulRanking = rakingService.filterByMaxAndMinResults(ranking);
             log.info("Success generating ranking!");
             return ResponseEntity.status(HttpStatus.OK).body(resulRanking);
         } catch (Exception e){

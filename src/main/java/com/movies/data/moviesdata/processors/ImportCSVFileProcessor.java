@@ -28,6 +28,7 @@ public class ImportCSVFileProcessor {
         if (importDataCSVConfigurations.getEnvironmentType().equals(EnvironmentTypes.PROD)){
             try (FileInputStream fileCSV = new FileInputStream(csvHome + File.separator + importDataCSVConfigurations.getFileName())) {
                 importerDataService.processFile(fileCSV);
+                log.info("Uploaded the file successfully: " + importDataCSVConfigurations.getFileName());
             } catch (IOException e) {
                 log.error("Could not open the file: {} ", e.getMessage(),e);
             }

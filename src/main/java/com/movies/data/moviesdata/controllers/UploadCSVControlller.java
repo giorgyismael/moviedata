@@ -2,6 +2,8 @@ package com.movies.data.moviesdata.controllers;
 
 import com.movies.data.moviesdata.handlers.CSVHandler;
 import com.movies.data.moviesdata.service.ImporterDataService;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import com.movies.data.moviesdata.message.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @CrossOrigin("http://localhost:8080")
 @RestController
+@Hidden
 @RequestMapping("/api/csv")
 public class UploadCSVControlller {
 
     @Autowired
     ImporterDataService importerDataService;
 
+    @Operation(summary = "import CSV file, disable for challenge", description = "friendly message with codeStatus")
     @PostMapping(value = "/upload",
         consumes = {"text/csv", "application/json"},
         produces = MediaType.APPLICATION_JSON_VALUE)

@@ -4,6 +4,7 @@ import com.movies.data.moviesdata.dto.RankingDTO;
 import com.movies.data.moviesdata.dto.ResultRankingDTO;
 import com.movies.data.moviesdata.message.ResponseMessage;
 import com.movies.data.moviesdata.service.RakingService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class RakingControlller {
     @Autowired
     RakingService rakingService;
 
+    @Operation(summary = "get rancking of the worstmovies", description = "This EndPoint not necessary information in body request")
     @GetMapping(value = "/worstmovies",
         produces = MediaType.APPLICATION_JSON_VALUE
     )

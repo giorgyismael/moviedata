@@ -7,6 +7,7 @@ import com.movies.data.moviesdata.service.RakingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,9 @@ public class RakingControlller {
     @Autowired
     RakingService rakingService;
 
-    @GetMapping("/worstmovies")
+    @GetMapping(value = "/worstmovies",
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public ResponseEntity<?> worstMovies() {
         String feedBackMessage;
         log.info("Loading rancking of the worstmovies ");
@@ -34,7 +37,7 @@ public class RakingControlller {
         } catch (Exception e){
             log.info("Ops...Error generating ranking, please try again!");
             feedBackMessage = "Ops...Error generating ranking, please try again!";
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(feedBackMessage));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(feedBackMessage,HttpStatus.INTERNAL_SERVER_ERROR.value()));
         }
 
     }

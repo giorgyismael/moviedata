@@ -7,6 +7,8 @@ import-data-csv:
   environment-type: DEV
   file-name: movielist.csv
 spring:
+  main:
+      allow-circular-references: true
   application:
     name: movies-data
   h2:

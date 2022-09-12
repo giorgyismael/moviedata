@@ -9,4 +9,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ResponseMessage implements Serializable {
   private String message;
+  private int StatusCode;
 }

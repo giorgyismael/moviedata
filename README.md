@@ -72,5 +72,5 @@ Está aplicação pode tanto ser executada via IDE de desenvolvimento (IntelliJ, Sp
 - Execute o arquivo `startup_client.bat`
 
 ####  Documentação
-- Acesse `localhost:8080/swagger-ui.html ` para ter acesso à documentação.
+- Acesse `http://localhost:8080/v3/api-docs/` para ter acesso à documentação.
 - Acesso `http://localhost:8080/swagger-ui/index.html` para ser possível importar os endPoints em alguma aplicação de interação com APIRest. 

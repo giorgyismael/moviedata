@@ -37,14 +37,15 @@ class RakingServiceTest {
     @BeforeEach
     void setUpMocks() throws Exception{
         worsrMoviesWinnerMokcs = Arrays.asList(
-            WorsrMovieWinnerTrueVO.builder().name("Producer 1").year("2010").build(),
-            WorsrMovieWinnerTrueVO.builder().name("Producer 4").year("2011").build(),
-            WorsrMovieWinnerTrueVO.builder().name("Producer 2").year("2010").build(),
             WorsrMovieWinnerTrueVO.builder().name("Producer 4").year("2010").build(),
+            WorsrMovieWinnerTrueVO.builder().name("Producer 1").year("2010").build(),
+            WorsrMovieWinnerTrueVO.builder().name("Producer 2").year("2010").build(),
+            WorsrMovieWinnerTrueVO.builder().name("Producer 4").year("2011").build(),
             WorsrMovieWinnerTrueVO.builder().name("Producer 1").year("2011").build(),
-            WorsrMovieWinnerTrueVO.builder().name("Producer 3").year("2010").build(),
             WorsrMovieWinnerTrueVO.builder().name("Producer 2").year("2015").build(),
-            WorsrMovieWinnerTrueVO.builder().name("Producer 3").year("2019").build());
+            WorsrMovieWinnerTrueVO.builder().name("Producer 3").year("2010").build(),
+            WorsrMovieWinnerTrueVO.builder().name("Producer 3").year("2019").build(),
+            WorsrMovieWinnerTrueVO.builder().name("Producer 2").year("2022").build());
         MockitoAnnotations.openMocks(this);
     }
 

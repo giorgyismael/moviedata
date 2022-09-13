@@ -1,11 +1,14 @@
 package com.movies.data.moviesdata.controllers;
 
+import com.movies.data.moviesdata.dto.RankingDTO;
 import com.movies.data.moviesdata.dto.ResultRankingDTO;
 import com.movies.data.moviesdata.processors.ImportCSVFileProcessor;
+import com.movies.data.moviesdata.service.RakingService;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static io.restassured.RestAssured.given;
@@ -15,9 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
+import java.util.List;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RakingControlllerTest {
+
+    @Autowired
+    RakingService rankingServiceMock;
 
     @BeforeEach
     void setUpMocks() throws Exception {
@@ -38,12 +46,15 @@ class RakingControlllerTest {
 
     @Test
     public void verifyGenereranking() {
-        ResultRankingDTO resulRanking = given()
+        ResultRankingDTO resulRankingAPI = given()
             .when().get("/racking/worstmovies")
             .then().statusCode(HttpStatus.OK.value()).extract().body().as(ResultRankingDTO.class);
 
-        assertNotNull(resulRanking);
-        assertEquals(resulRanking.getMax().get(0).getProducer(), "MATTHEW VAUGHN");
-        assertEquals(resulRanking.getMin().get(0).getProducer(), "JOEL SILVER");
+        List<RankingDTO> ranking =  rankingServiceMock.mountWortsMovies();
+        ResultRankingDTO resulRankingBase = rankingServiceMock.filterByMaxAndMinResults(ranking);
+
+        assertNotNull(resulRankingAPI);
+        assertEquals(resulRankingAPI.getMax(), resulRankingBase.getMax());
+        assertEquals(resulRankingAPI.getMin(), resulRankingBase.getMin());
     }
 }

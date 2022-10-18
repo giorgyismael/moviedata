@@ -19,7 +19,7 @@ public class RakingService {
     public static final int FILTER_PRODUCERS_WITH_MORE_THAN_ONE_WIN = 2;
     public static final int START_INDEX = 0;
     public static final int DELIMITER_RANGE = 1;
-    
+
     @Autowired
     WorstMovieRepository worstMovieRepository;
 
